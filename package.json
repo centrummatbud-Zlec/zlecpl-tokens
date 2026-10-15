@@ -1,0 +1,18 @@
+{
+  "name": "zlecpl-tokens",
+  "version": "1.0.0",
+  "description": "Design tokens dla Zlec.pl — kolory, typografia, spacing, cienie",
+  "type": "module",
+  "main": "build/js/tokens.js",
+  "types": "build/js/tokens.d.ts",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "update": "bash scripts/update-tokens.sh"
+  },
+  "files": [
+    "build/",
+    "design-tokens.json"
+  ],
+  "keywords": ["design-tokens", "zlecpl", "css-variables"],
+  "license": "MIT"
+}
