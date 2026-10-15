@@ -1,0 +1,117 @@
+/**
+ * Zlec.pl Design Tokens -- CSS Custom Properties
+ * Generated from design-tokens.json (W3C Design Tokens format)
+ * Usage: import this file once in your app's entry point (e.g. main.css)
+ * Naming: --zlec-{category}-{name}
+ */
+
+:root {
+  /* --- Brand --- */
+  --zlec-brand-primary: #E8470A;
+  --zlec-brand-dark: #C53A08;
+  --zlec-brand-tint: rgba(232, 71, 10, 0.12);
+
+  /* --- Navy --- */
+  --zlec-navy-base: #1A2B4A;
+  --zlec-navy-mid: #2D4066;
+  --zlec-navy-light: #3D5280;
+
+  /* --- Surface --- */
+  --zlec-surface-bg: #F4F5F8;
+  --zlec-surface-card: #FFFFFF;
+  --zlec-surface-elevated: #F0F1F5;
+
+  /* --- Text --- */
+  --zlec-text-primary: #1A2B4A;
+  --zlec-text-secondary: #64748B;
+  --zlec-text-tertiary: #94A3B8;
+
+  /* --- Border --- */
+  --zlec-border-default: rgba(0, 0, 0, 0.08);
+
+  /* --- Status --- */
+  --zlec-status-success: #10B981;
+  --zlec-status-success-tint: rgba(16, 185, 129, 0.12);
+  --zlec-status-warning: #F59E0B;
+  --zlec-status-warning-tint: rgba(245, 158, 11, 0.12);
+  --zlec-status-error: #EF4444;
+  --zlec-status-error-tint: rgba(239, 68, 68, 0.12);
+  --zlec-status-info: #8B5CF6;
+  --zlec-status-info-tint: rgba(139, 92, 246, 0.12);
+
+  /* --- Border Radius --- */
+  --zlec-radius-sm: 8px;
+  --zlec-radius-md: 12px;
+  --zlec-radius-lg: 16px;
+  --zlec-radius-xl: 20px;
+  --zlec-radius-full: 999px;
+
+  /* --- Spacing --- */
+  --zlec-spacing-xs: 4px;
+  --zlec-spacing-sm: 8px;
+  --zlec-spacing-md: 12px;
+  --zlec-spacing-lg: 16px;
+  --zlec-spacing-xl: 24px;
+  --zlec-spacing-2xl: 32px;
+
+  /* --- Typography --- */
+  --zlec-type-family-base: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --zlec-type-size-xs: 11px;
+  --zlec-type-size-sm: 13px;
+  --zlec-type-size-base: 15px;
+  --zlec-type-size-lg: 17px;
+  --zlec-type-size-xl: 20px;
+  --zlec-type-size-2xl: 24px;
+  --zlec-type-size-3xl: 30px;
+
+  --zlec-type-weight-regular: 400;
+  --zlec-type-weight-medium: 500;
+  --zlec-type-weight-semibold: 600;
+  --zlec-type-weight-bold: 700;
+
+  --zlec-type-lineheight-tight: 1.2;
+  --zlec-type-lineheight-normal: 1.5;
+  --zlec-type-lineheight-loose: 1.7;
+
+  /* --- Shadows --- */
+  --zlec-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --zlec-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --zlec-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* --- Dark Mode --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --zlec-surface-bg: #0F1720;
+    --zlec-surface-card: #1A2535;
+    --zlec-surface-elevated: #222F42;
+
+    --zlec-text-primary: #E8EDF5;
+    --zlec-text-secondary: #8BA3C0;
+    --zlec-text-tertiary: #4A6280;
+
+    --zlec-border-default: rgba(255, 255, 255, 0.08);
+
+    --zlec-navy-base: #0D1829;
+    --zlec-navy-mid: #1A2B4A;
+    --zlec-navy-light: #2D4066;
+  }
+}
+
+/* Manual dark override */
+[data-theme="dark"] {
+  --zlec-surface-bg: #0F1720;
+  --zlec-surface-card: #1A2535;
+  --zlec-surface-elevated: #222F42;
+
+  --zlec-text-primary: #E8EDF5;
+  --zlec-text-secondary: #8BA3C0;
+  --zlec-text-tertiary: #4A6280;
+
+  --zlec-border-default: rgba(255, 255, 255, 0.08);
+
+  --zlec-navy-base: #0D1829;
+  --zlec-navy-mid: #1A2B4A;
+  --zlec-navy-light: #2D4066;
+}
