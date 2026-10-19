@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // scripts/build.js — Custom build script dla Zlec.pl design tokens
-// Brak zależności — czysty Node.js (ESM)
+// Bez zewnętrznych zależności — czysty Node.js (ESM)
 // Użycie: node scripts/build.js
 
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
@@ -9,6 +9,9 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
+
+const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
+const VERSION = pkg.version;
 
 // ── Wczytaj tokeny ──────────────────────────────────────────────────────────
 const tokens = JSON.parse(readFileSync(join(ROOT, 'design-tokens.json'), 'utf8'));
@@ -45,7 +48,7 @@ function buildJSObj(obj) {
 
 /** Generuje deklaracje TypeScript dla zagnieżdżonego obiektu */
 function toTSType(obj, indent = 1) {
-  const pad = '  '.repeat(indent);
+  const pad = ' '.repeat(indent);
   return Object.entries(obj).map(([k, v]) => {
     const key = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k) ? k : `'${k}'`;
     if (typeof v === 'object' && v !== null) {
@@ -67,12 +70,7 @@ const flatDark  = flattenTokens(darkGroup);
 // ── Dark-mode overrides (mapuj dark.surface.bg → --zlec-surface-bg) ─────────
 function buildDarkOverrides() {
   const lines = [];
-  const mapping = {
-    surface: 'surface',
-    text:    'text',
-    border:  'border',
-    navy:    'navy',
-  };
+  const mapping = { surface: 'surface', text: 'text', border: 'border', navy: 'navy' };
   for (const [darkKey, lightKey] of Object.entries(mapping)) {
     const group = darkGroup[darkKey];
     if (!group) continue;
@@ -93,7 +91,7 @@ const lightVars = Object.entries(flatLight)
 const darkOverrides = buildDarkOverrides();
 
 const css = `/* Wygenerowane przez scripts/build.js — nie edytować ręcznie */
-/* Zlec.pl Design Tokens v${JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8')).version} */
+/* Zlec.pl Design Tokens v${VERSION} */
 
 :root {
 ${lightVars}
@@ -112,6 +110,54 @@ ${darkOverrides}
 }
 `;
 
+// ── Generuj SCSS ─────────────────────────────────────────────────────────────
+const scssLightVars = Object.entries(flatLight)
+  .map(([k, v]) => `\$zlec-${k}: ${v} !default;`)
+  .join('\n');
+
+const scssDarkVars = Object.entries(flatDark)
+  .map(([k, v]) => `\$zlec-dark-${k}: ${v} !default;`)
+  .join('\n');
+
+const scssMapEntries = Object.entries(flatLight)
+  .map(([k, v]) => `  '${k}': ${JSON.stringify(v)},`)
+  .join('\n');
+
+const scss = `// Wygenerowane przez scripts/build.js — nie edytować ręcznie
+// Zlec.pl Design Tokens v${VERSION} — SCSS Variables
+
+// ── Light mode variables ──────────────────────────────────────────────────────
+${scssLightVars}
+
+// ── Dark mode variables ───────────────────────────────────────────────────────
+${scssDarkVars}
+
+// ── Token map (dla sass:map / map.get) ───────────────────────────────────────
+\$zlec-tokens: (
+${scssMapEntries}
+);
+
+// ── Helper function ───────────────────────────────────────────────────────────
+// Użycie: color: zlec-token('brand-primary');
+@use 'sass:map' as _map;
+@function zlec-token(\$key) {
+  @return _map.get(\$zlec-tokens, \$key);
+}
+
+// ── Dark mode mixin ───────────────────────────────────────────────────────────
+// Użycie: [data-theme="dark"] { @include zlec-dark-mode; }
+@mixin zlec-dark-mode {
+${Object.entries(flatDark)
+    .map(([k, v]) => {
+      // klucz dark: surface-bg -> zmapuj na odpowiadającą zmienną light
+      const parts = k.split('-');
+      const lightKey = parts.join('-');
+      return `  \$zlec-${lightKey}: ${v};`;
+    })
+    .join('\n')}
+}
+`;
+
 // ── Generuj JS ──────────────────────────────────────────────────────────────
 const jsTokens = {
   color: {
@@ -122,10 +168,10 @@ const jsTokens = {
     border:  buildJSObj(tokens.border  || {}),
     status:  buildJSObj(tokens.status  || {}),
   },
-  radius:     buildJSObj(tokens.radius  || {}),
-  spacing:    buildJSObj(tokens.spacing || {}),
-  typography: buildJSObj(tokens.type    || {}),
-  shadow:     buildJSObj(tokens.shadow  || {}),
+  radius:     buildJSObj(tokens.radius   || {}),
+  spacing:    buildJSObj(tokens.spacing  || {}),
+  typography: buildJSObj(tokens.type     || {}),
+  shadow:     buildJSObj(tokens.shadow   || {}),
   dark: {
     surface: buildJSObj(darkGroup.surface || {}),
     text:    buildJSObj(darkGroup.text    || {}),
@@ -135,7 +181,7 @@ const jsTokens = {
 };
 
 const js = `// Wygenerowane przez scripts/build.js — nie edytować ręcznie
-// Zlec.pl Design Tokens
+// Zlec.pl Design Tokens v${VERSION}
 
 export const color = ${JSON.stringify(jsTokens.color, null, 2)};
 
@@ -168,17 +214,17 @@ function declareConst(name, obj) {
 }
 
 const dts = `// Wygenerowane przez scripts/build.js — nie edytować ręcznie
-// Zlec.pl Design Tokens — TypeScript declarations
+// Zlec.pl Design Tokens v${VERSION} — TypeScript declarations
 
-${declareConst('color',      jsTokens.color)}
+${declareConst('color', jsTokens.color)}
 
-${declareConst('radius',     jsTokens.radius)}
+${declareConst('radius', jsTokens.radius)}
 
-${declareConst('spacing',    jsTokens.spacing)}
+${declareConst('spacing', jsTokens.spacing)}
 
 ${declareConst('typography', jsTokens.typography)}
 
-${declareConst('shadow',     jsTokens.shadow)}
+${declareConst('shadow', jsTokens.shadow)}
 
 ${declareConst('darkTokens', jsTokens.dark)}
 
@@ -195,14 +241,17 @@ export default tokens;
 `;
 
 // ── Zapisz pliki ─────────────────────────────────────────────────────────────
-mkdirSync(join(ROOT, 'build/css'), { recursive: true });
-mkdirSync(join(ROOT, 'build/js'),  { recursive: true });
+mkdirSync(join(ROOT, 'build/css'),  { recursive: true });
+mkdirSync(join(ROOT, 'build/js'),   { recursive: true });
+mkdirSync(join(ROOT, 'build/scss'), { recursive: true });
 
-writeFileSync(join(ROOT, 'build/css/variables.css'), css,  'utf8');
-writeFileSync(join(ROOT, 'build/js/tokens.js'),      js,   'utf8');
-writeFileSync(join(ROOT, 'build/js/tokens.d.ts'),    dts,  'utf8');
+writeFileSync(join(ROOT, 'build/css/variables.css'),   css,  'utf8');
+writeFileSync(join(ROOT, 'build/scss/_tokens.scss'),   scss, 'utf8');
+writeFileSync(join(ROOT, 'build/js/tokens.js'),        js,   'utf8');
+writeFileSync(join(ROOT, 'build/js/tokens.d.ts'),      dts,  'utf8');
 
-console.log('✅ Build zakończony pomyślnie!');
-console.log('   📄 build/css/variables.css   — CSS Custom Properties');
-console.log('   📄 build/js/tokens.js        — ES6 named exports');
-console.log('   📄 build/js/tokens.d.ts      — TypeScript declarations');
+console.log('\u2705 Build zakończony pomyślnie!');
+console.log('  \u{1F4C4} build/css/variables.css   — CSS Custom Properties + dark mode');
+console.log('  \u{1F4C4} build/scss/_tokens.scss   — SCSS variables + mixin + map');
+console.log('  \u{1F4C4} build/js/tokens.js        — ES6 named exports');
+console.log('  \u{1F4C4} build/js/tokens.d.ts      — TypeScript declarations');
