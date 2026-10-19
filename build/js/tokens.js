@@ -1,5 +1,5 @@
 // Wygenerowane przez scripts/build.js — nie edytować ręcznie
-// Zlec.pl Design Tokens
+// Zlec.pl Design Tokens v1.0.0
 
 export const color = {
   "brand": {

@@ -1,0 +1,142 @@
+// Wygenerowane przez scripts/build.js — nie edytować ręcznie
+// Zlec.pl Design Tokens v1.0.0 — SCSS Variables
+
+// ── Light mode variables ──────────────────────────────────────────────────────
+$zlec-brand-primary: #E8470A !default;
+$zlec-brand-dark: #C53A08 !default;
+$zlec-brand-tint: rgba(232,71,10,0.12) !default;
+$zlec-navy-base: #1A2B4A !default;
+$zlec-navy-mid: #2D4066 !default;
+$zlec-navy-light: #3D5280 !default;
+$zlec-surface-bg: #F4F5F8 !default;
+$zlec-surface-card: #FFFFFF !default;
+$zlec-surface-elevated: #F0F1F5 !default;
+$zlec-text-primary: #1A2B4A !default;
+$zlec-text-secondary: #64748B !default;
+$zlec-text-tertiary: #94A3B8 !default;
+$zlec-border-default: rgba(0,0,0,0.08) !default;
+$zlec-status-success: #10B981 !default;
+$zlec-status-success-tint: rgba(16,185,129,0.12) !default;
+$zlec-status-warning: #F59E0B !default;
+$zlec-status-warning-tint: rgba(245,158,11,0.12) !default;
+$zlec-status-error: #EF4444 !default;
+$zlec-status-error-tint: rgba(239,68,68,0.12) !default;
+$zlec-status-info: #8B5CF6 !default;
+$zlec-status-info-tint: rgba(139,92,246,0.12) !default;
+$zlec-radius-sm: 8px !default;
+$zlec-radius-md: 12px !default;
+$zlec-radius-lg: 16px !default;
+$zlec-radius-xl: 20px !default;
+$zlec-radius-full: 999px !default;
+$zlec-spacing-xs: 4px !default;
+$zlec-spacing-sm: 8px !default;
+$zlec-spacing-md: 12px !default;
+$zlec-spacing-lg: 16px !default;
+$zlec-spacing-xl: 24px !default;
+$zlec-spacing-2xl: 32px !default;
+$zlec-type-family-base: Plus Jakarta Sans, system-ui, sans-serif !default;
+$zlec-type-size-xs: 11px !default;
+$zlec-type-size-sm: 13px !default;
+$zlec-type-size-base: 15px !default;
+$zlec-type-size-lg: 17px !default;
+$zlec-type-size-xl: 20px !default;
+$zlec-type-size-2xl: 24px !default;
+$zlec-type-size-3xl: 30px !default;
+$zlec-type-weight-regular: 400 !default;
+$zlec-type-weight-medium: 500 !default;
+$zlec-type-weight-semibold: 600 !default;
+$zlec-type-weight-bold: 700 !default;
+$zlec-type-lineHeight-tight: 1.2 !default;
+$zlec-type-lineHeight-normal: 1.5 !default;
+$zlec-type-lineHeight-loose: 1.7 !default;
+$zlec-shadow-sm: 0 1px 3px rgba(0,0,0,0.08) !default;
+$zlec-shadow-md: 0 4px 12px rgba(0,0,0,0.12) !default;
+$zlec-shadow-lg: 0 8px 24px rgba(0,0,0,0.18) !default;
+
+// ── Dark mode variables ───────────────────────────────────────────────────────
+$zlec-dark-surface-bg: #0F1720 !default;
+$zlec-dark-surface-card: #1A2535 !default;
+$zlec-dark-surface-elevated: #222F42 !default;
+$zlec-dark-text-primary: #E8EDF5 !default;
+$zlec-dark-text-secondary: #8BA3C0 !default;
+$zlec-dark-text-tertiary: #4A6280 !default;
+$zlec-dark-border-default: rgba(255,255,255,0.08) !default;
+$zlec-dark-navy-base: #0D1829 !default;
+$zlec-dark-navy-mid: #1A2B4A !default;
+$zlec-dark-navy-light: #2D4066 !default;
+
+// ── Token map (dla sass:map / map.get) ───────────────────────────────────────
+$zlec-tokens: (
+  'brand-primary': "#E8470A",
+  'brand-dark': "#C53A08",
+  'brand-tint': "rgba(232,71,10,0.12)",
+  'navy-base': "#1A2B4A",
+  'navy-mid': "#2D4066",
+  'navy-light': "#3D5280",
+  'surface-bg': "#F4F5F8",
+  'surface-card': "#FFFFFF",
+  'surface-elevated': "#F0F1F5",
+  'text-primary': "#1A2B4A",
+  'text-secondary': "#64748B",
+  'text-tertiary': "#94A3B8",
+  'border-default': "rgba(0,0,0,0.08)",
+  'status-success': "#10B981",
+  'status-success-tint': "rgba(16,185,129,0.12)",
+  'status-warning': "#F59E0B",
+  'status-warning-tint': "rgba(245,158,11,0.12)",
+  'status-error': "#EF4444",
+  'status-error-tint': "rgba(239,68,68,0.12)",
+  'status-info': "#8B5CF6",
+  'status-info-tint': "rgba(139,92,246,0.12)",
+  'radius-sm': "8px",
+  'radius-md': "12px",
+  'radius-lg': "16px",
+  'radius-xl': "20px",
+  'radius-full': "999px",
+  'spacing-xs': "4px",
+  'spacing-sm': "8px",
+  'spacing-md': "12px",
+  'spacing-lg': "16px",
+  'spacing-xl': "24px",
+  'spacing-2xl': "32px",
+  'type-family-base': "Plus Jakarta Sans, system-ui, sans-serif",
+  'type-size-xs': "11px",
+  'type-size-sm': "13px",
+  'type-size-base': "15px",
+  'type-size-lg': "17px",
+  'type-size-xl': "20px",
+  'type-size-2xl': "24px",
+  'type-size-3xl': "30px",
+  'type-weight-regular': "400",
+  'type-weight-medium': "500",
+  'type-weight-semibold': "600",
+  'type-weight-bold': "700",
+  'type-lineHeight-tight': "1.2",
+  'type-lineHeight-normal': "1.5",
+  'type-lineHeight-loose': "1.7",
+  'shadow-sm': "0 1px 3px rgba(0,0,0,0.08)",
+  'shadow-md': "0 4px 12px rgba(0,0,0,0.12)",
+  'shadow-lg': "0 8px 24px rgba(0,0,0,0.18)",
+);
+
+// ── Helper function ───────────────────────────────────────────────────────────
+// Użycie: color: zlec-token('brand-primary');
+@use 'sass:map' as _map;
+@function zlec-token($key) {
+  @return _map.get($zlec-tokens, $key);
+}
+
+// ── Dark mode mixin ───────────────────────────────────────────────────────────
+// Użycie: [data-theme="dark"] { @include zlec-dark-mode; }
+@mixin zlec-dark-mode {
+  $zlec-surface-bg: #0F1720;
+  $zlec-surface-card: #1A2535;
+  $zlec-surface-elevated: #222F42;
+  $zlec-text-primary: #E8EDF5;
+  $zlec-text-secondary: #8BA3C0;
+  $zlec-text-tertiary: #4A6280;
+  $zlec-border-default: rgba(255,255,255,0.08);
+  $zlec-navy-base: #0D1829;
+  $zlec-navy-mid: #1A2B4A;
+  $zlec-navy-light: #2D4066;
+}
