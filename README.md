@@ -1,113 +1,137 @@
-# Zlec.pl Design Tokens
+# @zlecpl/tokens
 
-Źródło prawdy dla kolorów, spacingów, typografii i cieni aplikacji Zlec.pl.  
-Tokeny tworzone w Penpot (plugin Penpot Tokens) i eksportowane do W3C Design Tokens JSON.
+Design tokens dla [Zlec.pl](https://zlec.pl) — jedno źródło prawdy dla kolorów, typografii, spacingu, cieni i border-radius.
+
+Pakiet generuje 4 formaty wyjściowe z jednego pliku `design-tokens.json`:
+
+| Format | Ścieżka | Użycie |
+|--------|---------|--------|
+| CSS Custom Properties | `@zlecpl/tokens/css` | `var(--zlec-brand-primary)` |
+| SCSS variables | `@zlecpl/tokens/scss` | `$zlec-brand-primary` |
+| ES6 named exports | `@zlecpl/tokens` | `color.brand.primary` |
+| TypeScript declarations | (auto) | pełne typy dla TS |
+
+---
 
 ## Instalacja
 
 ```bash
-npm install zlecpl-tokens
+npm install @zlecpl/tokens
 ```
 
-## Struktura
+---
 
-```
-design-tokens.json        ← Źródło (W3C format, edytuj w Penpot)
-scripts/build.js          ← skrypt budujący (pure Node.js)
-build/
-  css/variables.css       ← CSS Custom Properties (:root + dark mode)
-  scss/_tokens.scss       ← SCSS variables, map, function, mixin
-  js/tokens.js            ← ES6 named exports
-  js/tokens.d.ts          ← TypeScript declarations
-```
+## Użycie
 
-## Użycie CSS
+### CSS Custom Properties
 
 ```css
-/* import przez package exports */
-@import 'zlecpl-tokens/css';
+@import '@zlecpl/tokens/css';
 
-/* lub bezpośrednio */
-@import 'zlecpl-tokens/build/css/variables.css';
-
-/* Użycie */
-.btn-primary {
+.button-primary {
   background: var(--zlec-brand-primary);
-  border-radius: var(--zlec-radius-full);
+  border-radius: var(--zlec-radius-md);
   padding: var(--zlec-spacing-md) var(--zlec-spacing-xl);
-  font-size: var(--zlec-type-size-base);
+  color: #fff;
+  font-family: var(--zlec-type-family-base);
   font-weight: var(--zlec-type-weight-semibold);
-  box-shadow: var(--zlec-shadow-sm);
 }
 ```
 
-Dark mode działa automatycznie przez `@media (prefers-color-scheme: dark)`  
-oraz atrybut `[data-theme="dark"]` na elemencie root.
+Dark mode działa automatycznie przez `prefers-color-scheme`, lub ręcznie przez atrybut `data-theme="dark"` na `<html>`.
 
-## Użycie SCSS
+### SCSS Variables
 
 ```scss
-// import przez package exports
-@use 'zlecpl-tokens/scss' as *;
+@use '@zlecpl/tokens/scss';
 
-// lub bezpośrednio
-@use 'zlecpl-tokens/build/scss/tokens' as *;
-
-// Zmienne SCSS
-.btn-primary {
-  background: $zlec-brand-primary;
-  border-radius: $zlec-radius-full;
-  padding: $zlec-spacing-md $zlec-spacing-xl;
-}
-
-// Funkcja pomocnicza (dostęp przez mapę)
-.link {
-  color: zlec-token('brand-primary');
-}
-
-// Mixin dark mode
-@include zlec-dark-mode {
-  .card {
-    background: $zlec-dark-surface-bg;
-    color: $zlec-dark-text-primary;
-  }
+.card {
+  background: $zlec-surface-card;
+  border-radius: $zlec-radius-lg;
+  box-shadow: $zlec-shadow-md;
+  padding: $zlec-spacing-xl;
 }
 ```
 
-## Użycie JS / TypeScript
+### JavaScript / TypeScript
 
 ```ts
-import { color, spacing, typography, shadow, tokens } from 'zlecpl-tokens';
+import { color, spacing, radius, shadow, typography } from '@zlecpl/tokens';
 
-// Pojedyncze wartości
-const primary = color.brand.primary;   // '#E8470A'
-const gap = spacing.lg;                // '16px'
-const font = typography.size.base;     // '16px'
-
-// Wszystko naraz
-console.log(tokens.shadow.md);         // '0 4px 12px rgba(0,0,0,0.12)'
+const styles = {
+  backgroundColor: color.brand.primary,
+  borderRadius: radius.md,
+  padding: `${spacing.md} ${spacing.xl}`,
+  boxShadow: shadow.md,
+};
 ```
 
-## Regeneracja po zmianie tokenów w Penpot
+---
 
-1. W Penpot → zakładka **TOKENS** → **TOOLS** → **Eksportuj** → pobierz JSON
-2. Zastąp `design-tokens.json` nowym plikiem
-3. Commit na `main` — CI zbuduje i skomituje pliki `build/` automatycznie
+## Dostępne tokeny
 
-Lokalnie:
+### Kolory
 
-```bash
-node scripts/build.js
-```
+| Token | Wartość | Opis |
+|-------|---------|------|
+| `brand.primary` | `#E8470A` | CTA, akcenty |
+| `brand.dark` | `#C53A08` | Hover/pressed |
+| `brand.tint` | `rgba(232,71,10,0.12)` | Tło z akcentem |
+| `navy.base` | `#1A2B4A` | Kolor główny tekstu (light) |
+| `navy.mid` | `#2D4066` | Karty, tła sekcji |
+| `navy.light` | `#3D5280` | Ikony, obramowania |
+| `surface.bg` | `#F4F5F8` | Tło strony |
+| `surface.card` | `#FFFFFF` | Karty, inputy |
+| `text.primary` | `#1A2B4A` | Główny tekst |
+| `text.secondary` | `#64748B` | Dodatkowy tekst |
+| `status.success` | `#10B981` | — |
+| `status.warning` | `#F59E0B` | — |
+| `status.error` | `#EF4444` | — |
+| `status.info` | `#8B5CF6` | — |
 
-## Publikacja nowej wersji na npm
+### Spacing
 
-1. Zaktualizuj `version` w `package.json`
-2. Utwórz i wypchnij tag:
+`xs` (4px) · `sm` (8px) · `md` (12px) · `lg` (16px) · `xl` (24px) · `2xl` (32px)
 
-```bash
-git tag v1.1.0
-git push origin v1.1.0
-```
+### Border Radius
 
-GitHub Actions automatycznie opublikuje pakiet na npm (wymaga ustawionego sekretu `NPM_TOKEN`).
+`sm` (8px) · `md` (12px) · `lg` (16px) · `xl` (20px) · `full` (999px)
+
+### Typografia
+
+- **Font:** Plus Jakarta Sans
+- - **Rozmiary:** `xs` (11px) · `sm` (13px) · `base` (15px) · `lg` (17px) · `xl` (20px) · `2xl` (24px) · `3xl` (30px)
+  - - **Wagi:** `regular` (400) · `medium` (500) · `semibold` (600) · `bold` (700)
+   
+    - ### Cienie
+   
+    - `shadow.sm` · `shadow.md` · `shadow.lg`
+   
+    - ---
+
+    ## Dark mode
+
+    ```css
+    /* Automatyczne — przez system OS */
+    @media (prefers-color-scheme: dark) { … }
+
+    /* Ręczne — przez atrybut HTML */
+    <html data-theme="dark">
+    ```
+
+    ---
+
+    ## Aktualizacja tokenów
+
+    Po każdej zmianie w `design-tokens.json` i wstawieniu tagu `v*` GitHub Actions automatycznie publikuje nową wersję na npm.
+
+    ```bash
+    node scripts/build.js      # lokalny build
+    git tag v1.1.0 && git push --tags  # publish przez CI
+    ```
+
+    ---
+
+    ## Licencja
+
+    MIT © [Zlec.pl](https://zlec.pl)
