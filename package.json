@@ -1,5 +1,5 @@
 {
-  "name": "zlecpl-tokens",
+  "name": "@zlecpl/tokens",
   "version": "1.0.0",
   "description": "Design tokens dla Zlec.pl — kolory, typografia, spacing, cienie",
   "type": "module",
@@ -20,6 +20,9 @@
     "build/",
     "design-tokens.json"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": ["design-tokens", "zlecpl", "css-variables"],
   "license": "MIT"
 }
