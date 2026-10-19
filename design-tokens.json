@@ -1,36 +1,101 @@
 {
   "$schema": "https://design-tokens.org/schema.json",
   "brand": {
-    "primary": {
-      "$value": "#E8470A",
-      "$type": "color",
-      "$description": "Kolor marki - CTA, akcenty (v1.0)"
-    },
-    "dark": {
-      "$value": "#C53A08",
-      "$type": "color",
-      "$description": "Hover/pressed dla brand primary"
-    },
-    "tint": {
-      "$value": "rgba(232,71,10,0.12)",
-      "$type": "color",
-      "$description": "Tlo kart z akcentem marki"
-    }
+    "primary": { "$value": "#E8470A", "$type": "color", "$description": "Kolor marki - CTA, akcenty" },
+    "dark": { "$value": "#C53A08", "$type": "color", "$description": "Hover/pressed dla brand primary" },
+    "tint": { "$value": "rgba(232,71,10,0.12)", "$type": "color", "$description": "Tlo kart z akcentem marki" }
   },
   "navy": {
-    "base": {
-      "$value": "#1A2B4A",
-      "$type": "color"
-    },
-    "mid": {
-      "$value": "#2D4066",
-      "$type": "color"
-    },
-    "light": {
-      "$value": "#3D5280",
-      "$type": "color"
-    }
+    "base": { "$value": "#1A2B4A", "$type": "color", "$description": "Kolor glowny tekstu (light), tlo statusbara" },
+    "mid": { "$value": "#2D4066", "$type": "color", "$description": "Karty, tla sekcji (light)" },
+    "light": { "$value": "#3D5280", "$type": "color", "$description": "Ikony, obramowania (light)" }
   },
   "surface": {
-    "bg": {
-      "$value": "#F4F5F8",
+    "bg": { "$value": "#F4F5F8", "$type": "color", "$description": "Tlo strony (light)" },
+    "card": { "$value": "#FFFFFF", "$type": "color", "$description": "Karty, inputy (light)" },
+    "elevated": { "$value": "#F0F1F5", "$type": "color", "$description": "Tlo elementow wzniesionych (light)" }
+  },
+  "text": {
+    "primary": { "$value": "#1A2B4A", "$type": "color" },
+    "secondary": { "$value": "#64748B", "$type": "color" },
+    "tertiary": { "$value": "#94A3B8", "$type": "color" }
+  },
+  "border": {
+    "default": { "$value": "rgba(0,0,0,0.08)", "$type": "color" }
+  },
+  "status": {
+    "success": { "$value": "#10B981", "$type": "color" },
+    "success-tint": { "$value": "rgba(16,185,129,0.12)", "$type": "color" },
+    "warning": { "$value": "#F59E0B", "$type": "color" },
+    "warning-tint": { "$value": "rgba(245,158,11,0.12)", "$type": "color" },
+    "error": { "$value": "#EF4444", "$type": "color" },
+    "error-tint": { "$value": "rgba(239,68,68,0.12)", "$type": "color" },
+    "info": { "$value": "#8B5CF6", "$type": "color" },
+    "info-tint": { "$value": "rgba(139,92,246,0.12)", "$type": "color" }
+  },
+  "radius": {
+    "sm": { "$value": "8px", "$type": "dimension", "$description": "Chips, badges, inputy" },
+    "md": { "$value": "12px", "$type": "dimension", "$description": "Karty wewnetrzne" },
+    "lg": { "$value": "16px", "$type": "dimension", "$description": "Karty glowne" },
+    "xl": { "$value": "20px", "$type": "dimension", "$description": "Bottom sheets, overlaye" },
+    "full": { "$value": "999px", "$type": "dimension", "$description": "Przyciski pill, avatary" }
+  },
+  "spacing": {
+    "xs": { "$value": "4px", "$type": "dimension" },
+    "sm": { "$value": "8px", "$type": "dimension" },
+    "md": { "$value": "12px", "$type": "dimension" },
+    "lg": { "$value": "16px", "$type": "dimension" },
+    "xl": { "$value": "24px", "$type": "dimension" },
+    "2xl": { "$value": "32px", "$type": "dimension" }
+  },
+  "type": {
+    "family": {
+      "base": { "$value": "Plus Jakarta Sans, system-ui, sans-serif", "$type": "fontFamily" }
+    },
+    "size": {
+      "xs":   { "$value": "11px", "$type": "dimension", "$description": "Etykiety, badges" },
+      "sm":   { "$value": "13px", "$type": "dimension", "$description": "Napisy wtorne" },
+      "base": { "$value": "15px", "$type": "dimension", "$description": "Tresc glowna" },
+      "lg":   { "$value": "17px", "$type": "dimension", "$description": "Naglowki kart" },
+      "xl":   { "$value": "20px", "$type": "dimension", "$description": "Tytuly sekcji" },
+      "2xl":  { "$value": "24px", "$type": "dimension", "$description": "H2, kwoty" },
+      "3xl":  { "$value": "30px", "$type": "dimension", "$description": "H1" }
+    },
+    "weight": {
+      "regular":  { "$value": "400", "$type": "fontWeight" },
+      "medium":   { "$value": "500", "$type": "fontWeight" },
+      "semibold": { "$value": "600", "$type": "fontWeight" },
+      "bold":     { "$value": "700", "$type": "fontWeight" }
+    },
+    "lineHeight": {
+      "tight":  { "$value": "1.2", "$type": "number", "$description": "Naglowki" },
+      "normal": { "$value": "1.5", "$type": "number", "$description": "Tresc" },
+      "loose":  { "$value": "1.7", "$type": "number", "$description": "Dlugie opisy" }
+    }
+  },
+  "shadow": {
+    "sm": { "$value": "0 1px 3px rgba(0,0,0,0.08)", "$type": "shadow" },
+    "md": { "$value": "0 4px 12px rgba(0,0,0,0.12)", "$type": "shadow" },
+    "lg": { "$value": "0 8px 24px rgba(0,0,0,0.18)", "$type": "shadow" }
+  },
+  "dark": {
+    "surface": {
+      "bg":       { "$value": "#0F1720", "$type": "color" },
+      "card":     { "$value": "#1A2535", "$type": "color" },
+      "elevated": { "$value": "#222F42", "$type": "color" }
+    },
+    "text": {
+      "primary":   { "$value": "#E8EDF5", "$type": "color" },
+      "secondary": { "$value": "#8BA3C0", "$type": "color" },
+      "tertiary":  { "$value": "#4A6280", "$type": "color" }
+    },
+    "border": {
+      "default": { "$value": "rgba(255,255,255,0.08)", "$type": "color" }
+    },
+    "navy": {
+      "base":  { "$value": "#0D1829", "$type": "color" },
+      "mid":   { "$value": "#1A2B4A", "$type": "color" },
+      "light": { "$value": "#2D4066", "$type": "color" }
+    }
+  }
+}
