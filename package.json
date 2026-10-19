@@ -5,9 +5,16 @@
   "type": "module",
   "main": "build/js/tokens.js",
   "types": "build/js/tokens.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/js/tokens.d.ts",
+      "import": "./build/js/tokens.js"
+    },
+    "./css": "./build/css/variables.css",
+    "./scss": "./build/scss/_tokens.scss"
+  },
   "scripts": {
-    "build": "node scripts/build.js",
-    "update": "bash scripts/update-tokens.sh"
+    "build": "node scripts/build.js"
   },
   "files": [
     "build/",
