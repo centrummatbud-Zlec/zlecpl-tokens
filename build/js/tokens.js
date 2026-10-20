@@ -92,6 +92,42 @@ export const shadow = {
   "lg": "0 8px 24px rgba(0,0,0,0.18)"
 };
 
+export const breakpoint = {
+  "xs": "375px",
+  "sm": "480px",
+  "md": "768px",
+  "lg": "1024px",
+  "xl": "1280px",
+  "2xl": "1440px"
+};
+
+export const animation = {
+  "duration": {
+    "instant": "80ms",
+    "fast": "150ms",
+    "normal": "250ms",
+    "slow": "400ms",
+    "slower": "600ms"
+  },
+  "easing": {
+    "standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+    "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
+    "accelerate": "cubic-bezier(0.4, 0, 1, 1)",
+    "spring": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+  }
+};
+
+export const zIndex = {
+  "base": "0",
+  "raised": "1",
+  "dropdown": "100",
+  "sticky": "200",
+  "overlay": "300",
+  "modal": "400",
+  "toast": "500",
+  "tooltip": "600"
+};
+
 export const darkTokens = {
   "surface": {
     "bg": "#0F1720",
@@ -120,6 +156,9 @@ export const tokens = {
   spacing,
   typography,
   shadow,
+  breakpoint,
+  animation,
+  zIndex,
   dark: darkTokens,
 };
 

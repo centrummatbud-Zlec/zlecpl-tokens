@@ -1,7 +1,7 @@
 // Wygenerowane przez scripts/build.js — nie edytować ręcznie
 // Zlec.pl Design Tokens v1.0.0 — SCSS Variables
 
-// ── Light mode variables ──────────────────────────────────────────────────────
+// ── Light mode variables ──────────────────────────────────────────────
 $zlec-spacing-xs: 4px !default;
 $zlec-spacing-sm: 8px !default;
 $zlec-spacing-md: 12px !default;
@@ -80,7 +80,7 @@ $zlec-z-index-modal: 400 !default;
 $zlec-z-index-toast: 500 !default;
 $zlec-z-index-tooltip: 600 !default;
 
-// ── Dark mode variables ───────────────────────────────────────────────────────
+// ── Dark mode variables ───────────────────────────────────────────────
 $zlec-dark-navy-base: #0D1829 !default;
 $zlec-dark-navy-mid: #1A2B4A !default;
 $zlec-dark-navy-light: #2D4066 !default;
@@ -92,7 +92,7 @@ $zlec-dark-surface-card: #1A2535 !default;
 $zlec-dark-surface-elevated: #222F42 !default;
 $zlec-dark-border-default: rgba(255,255,255,0.08) !default;
 
-// ── Token map (dla sass:map / map.get) ───────────────────────────────────────
+// ── Token map (dla sass:map / map.get) ─────────────────────────────────
 $zlec-tokens: (
   'spacing-xs': "4px",
   'spacing-sm': "8px",
@@ -173,14 +173,14 @@ $zlec-tokens: (
   'z-index-tooltip': "600",
 );
 
-// ── Helper function ───────────────────────────────────────────────────────────
+// ── Helper function ────────────────────────────────────────────────────
 // Użycie: color: zlec-token('brand-primary');
 @use 'sass:map' as _map;
 @function zlec-token($key) {
   @return _map.get($zlec-tokens, $key);
 }
 
-// ── Dark mode mixin ───────────────────────────────────────────────────────────
+// ── Dark mode mixin ────────────────────────────────────────────────────
 // Użycie: [data-theme="dark"] { @include zlec-dark-mode; }
 @mixin zlec-dark-mode {
   $zlec-navy-base: #0D1829;
