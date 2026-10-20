@@ -26,12 +26,12 @@ export declare const color: {
   default: string;
  };
  status: {
-  success: string;
-  'success-tint': string;
-  warning: string;
-  'warning-tint': string;
   error: string;
   'error-tint': string;
+  warning: string;
+  'warning-tint': string;
+  success: string;
+  'success-tint': string;
   info: string;
   'info-tint': string;
  };
@@ -67,16 +67,22 @@ export declare const typography: {
   '2xl': string;
   '3xl': string;
  };
+ lineHeight: {
+  tight: string;
+  normal: string;
+  loose: string;
+ };
+ letterSpacing: {
+  tight: string;
+  normal: string;
+  wide: string;
+  wider: string;
+ };
  weight: {
   regular: string;
   medium: string;
   semibold: string;
   bold: string;
- };
- lineHeight: {
-  tight: string;
-  normal: string;
-  loose: string;
  };
 };
 

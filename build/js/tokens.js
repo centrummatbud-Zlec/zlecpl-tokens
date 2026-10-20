@@ -26,12 +26,12 @@ export const color = {
     "default": "rgba(0,0,0,0.08)"
   },
   "status": {
-    "success": "#10B981",
-    "success-tint": "rgba(16,185,129,0.12)",
-    "warning": "#F59E0B",
-    "warning-tint": "rgba(245,158,11,0.12)",
     "error": "#EF4444",
     "error-tint": "rgba(239,68,68,0.12)",
+    "warning": "#F59E0B",
+    "warning-tint": "rgba(245,158,11,0.12)",
+    "success": "#10B981",
+    "success-tint": "rgba(16,185,129,0.12)",
     "info": "#8B5CF6",
     "info-tint": "rgba(139,92,246,0.12)"
   }
@@ -67,16 +67,22 @@ export const typography = {
     "2xl": "24px",
     "3xl": "30px"
   },
+  "lineHeight": {
+    "tight": "1.2",
+    "normal": "1.5",
+    "loose": "1.7"
+  },
+  "letterSpacing": {
+    "tight": "-0.02em",
+    "normal": "0em",
+    "wide": "0.02em",
+    "wider": "0.05em"
+  },
   "weight": {
     "regular": "400",
     "medium": "500",
     "semibold": "600",
     "bold": "700"
-  },
-  "lineHeight": {
-    "tight": "1.2",
-    "normal": "1.5",
-    "loose": "1.7"
   }
 };
 
